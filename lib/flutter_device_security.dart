@@ -10,12 +10,19 @@ class FlutterDeviceSecurity {
   final deviceSecurityInstance = FlutterDeviceSecurityPlatform.instance;
   Future<DeviceSecurity> checkDeviceSecurity({String? minimumVersion}) async {
     final hasPasscode = await deviceSecurityInstance.getHasPasscode();
-    final versionChecked = await _checkDeviceVersion(minimumVersion: minimumVersion);
+    final versionChecked = await _checkDeviceVersion(
+      minimumVersion: minimumVersion,
+    );
 
     if (Platform.isAndroid) {
       final hasBiometric = await deviceSecurityInstance.getHasBiometric();
       final hasUsbDebugging = await deviceSecurityInstance.getHasUsbDebugging();
-      return AndroidDeviceSecurity(passcode: hasPasscode, biometric: hasBiometric, usbDebugging: hasUsbDebugging, version: versionChecked);
+      return AndroidDeviceSecurity(
+        passcode: hasPasscode,
+        biometric: hasBiometric,
+        usbDebugging: hasUsbDebugging,
+        version: versionChecked,
+      );
     }
 
     return IOSDeviceSecurity(passcode: hasPasscode, version: versionChecked);
@@ -29,6 +36,9 @@ class FlutterDeviceSecurity {
     }
     final latestVersion = await apiService.fetchLatestVersion();
 
-    return VersionUtils.isVersionAtLeast(currentVersion, minimumVersion ?? latestVersion);
+    return VersionUtils.isVersionAtLeast(
+      currentVersion,
+      minimumVersion ?? latestVersion,
+    );
   }
 }

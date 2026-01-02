@@ -5,7 +5,9 @@ import 'package:flutter_device_security/src/models/device_security.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:plugin_platform_interface/plugin_platform_interface.dart';
 
-class MockFlutterDeviceSecurityPlatform with MockPlatformInterfaceMixin implements FlutterDeviceSecurityPlatform {
+class MockFlutterDeviceSecurityPlatform
+    with MockPlatformInterfaceMixin
+    implements FlutterDeviceSecurityPlatform {
   final Map<String, dynamic> _responses = {};
 
   void setMockResponse(String method, dynamic value) {
@@ -13,23 +15,29 @@ class MockFlutterDeviceSecurityPlatform with MockPlatformInterfaceMixin implemen
   }
 
   @override
-  Future<String> checkDeviceVersion() => Future.value(_responses['checkDeviceVersion'] ?? '15.0.0');
+  Future<String> checkDeviceVersion() =>
+      Future.value(_responses['checkDeviceVersion'] ?? '15.0.0');
 
   @override
-  Future<bool> getHasBiometric() => Future.value(_responses['getHasBiometric'] ?? true);
+  Future<bool> getHasBiometric() =>
+      Future.value(_responses['getHasBiometric'] ?? true);
 
   @override
-  Future<bool> getHasPasscode() => Future.value(_responses['getHasPasscode'] ?? true);
+  Future<bool> getHasPasscode() =>
+      Future.value(_responses['getHasPasscode'] ?? true);
 
   @override
-  Future<bool> getHasUsbDebugging() => Future.value(_responses['getHasUsbDebugging'] ?? false);
+  Future<bool> getHasUsbDebugging() =>
+      Future.value(_responses['getHasUsbDebugging'] ?? false);
 }
 
 void main() {
-  final FlutterDeviceSecurityPlatform initialPlatform = FlutterDeviceSecurityPlatform.instance;
+  final FlutterDeviceSecurityPlatform initialPlatform =
+      FlutterDeviceSecurityPlatform.instance;
 
   setUp(() {
-    FlutterDeviceSecurityPlatform.instance = MockFlutterDeviceSecurityPlatform();
+    FlutterDeviceSecurityPlatform.instance =
+        MockFlutterDeviceSecurityPlatform();
   });
 
   tearDown(() {
@@ -42,11 +50,16 @@ void main() {
 
     setUp(() {
       flutterDeviceSecurity = FlutterDeviceSecurity();
-      mockPlatform = FlutterDeviceSecurityPlatform.instance as MockFlutterDeviceSecurityPlatform;
+      mockPlatform =
+          FlutterDeviceSecurityPlatform.instance
+              as MockFlutterDeviceSecurityPlatform;
     });
 
     test('default instance is MethodChannelFlutterDeviceSecurity', () {
-      expect(initialPlatform, isInstanceOf<MethodChannelFlutterDeviceSecurity>());
+      expect(
+        initialPlatform,
+        isInstanceOf<MethodChannelFlutterDeviceSecurity>(),
+      );
     });
 
     group('Platform Tests', () {
@@ -70,7 +83,9 @@ void main() {
       test('passes version check with valid minimum version', () async {
         mockPlatform.setMockResponse('checkDeviceVersion', '15.0');
 
-        final result = await flutterDeviceSecurity.checkDeviceSecurity(minimumVersion: '14.0');
+        final result = await flutterDeviceSecurity.checkDeviceSecurity(
+          minimumVersion: '14.0',
+        );
 
         expect(result.version, true);
       });
@@ -103,23 +118,42 @@ void main() {
         expect(ios, isA<IOSDeviceSecurity>());
       });
 
-      test('AndroidDeviceSecurity can be instantiated with correct properties', () {
-        const android = AndroidDeviceSecurity(passcode: true, version: true, biometric: true, usbDebugging: false);
+      test(
+        'AndroidDeviceSecurity can be instantiated with correct properties',
+        () {
+          const android = AndroidDeviceSecurity(
+            passcode: true,
+            version: true,
+            biometric: true,
+            usbDebugging: false,
+          );
 
-        expect(android.passcode, true);
-        expect(android.version, true);
-        expect(android.biometric, true);
-        expect(android.usbDebugging, false);
-        expect(android, isA<DeviceSecurity>());
-        expect(android, isA<AndroidDeviceSecurity>());
-      });
+          expect(android.passcode, true);
+          expect(android.version, true);
+          expect(android.biometric, true);
+          expect(android.usbDebugging, false);
+          expect(android, isA<DeviceSecurity>());
+          expect(android, isA<AndroidDeviceSecurity>());
+        },
+      );
 
       test('toString methods work correctly', () {
         const ios = IOSDeviceSecurity(passcode: true, version: false);
-        const android = AndroidDeviceSecurity(passcode: false, version: true, biometric: true, usbDebugging: true);
+        const android = AndroidDeviceSecurity(
+          passcode: false,
+          version: true,
+          biometric: true,
+          usbDebugging: true,
+        );
 
-        expect(ios.toString(), 'IOSDeviceSecurity{passcode: true, version: false}');
-        expect(android.toString(), 'AndroidDeviceSecurity{passcode: false, version: true, biometric: true, usbDebugging: true}');
+        expect(
+          ios.toString(),
+          'IOSDeviceSecurity{passcode: true, version: false}',
+        );
+        expect(
+          android.toString(),
+          'AndroidDeviceSecurity{passcode: false, version: true, biometric: true, usbDebugging: true}',
+        );
       });
     });
   });

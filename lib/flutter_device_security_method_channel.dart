@@ -26,6 +26,7 @@ class MethodChannelFlutterDeviceSecurity extends FlutterDeviceSecurityPlatform {
 
   @override
   Future<bool> getHasUsbDebugging() async {
-    return await methodChannel.invokeMethod<bool?>('getHasUsbDebugging') ?? false;
+    return await methodChannel.invokeMethod<bool?>('getHasUsbDebugging') ??
+        false;
   }
 }

@@ -18,7 +18,12 @@ class AndroidDeviceSecurity extends DeviceSecurity {
   final bool? biometric;
   final bool? usbDebugging;
 
-  const AndroidDeviceSecurity({super.passcode, super.version, this.biometric, this.usbDebugging});
+  const AndroidDeviceSecurity({
+    super.passcode,
+    super.version,
+    this.biometric,
+    this.usbDebugging,
+  });
 
   @override
   String toString() {

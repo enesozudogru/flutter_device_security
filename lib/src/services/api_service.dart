@@ -9,7 +9,9 @@ class ApiService {
   Future<String?> fetchLatestVersion() async {
     try {
       final platform = Platform.isAndroid ? 'android' : 'ios';
-      final response = await dio.get('https://endoflife.date/api/$platform.json');
+      final response = await dio.get(
+        'https://endoflife.date/api/$platform.json',
+      );
       if (response.statusCode == 200) {
         final data = response.data;
         if (data is List && data.isNotEmpty) {

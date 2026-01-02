@@ -8,7 +8,8 @@ abstract class FlutterDeviceSecurityPlatform extends PlatformInterface {
 
   static final Object _token = Object();
 
-  static FlutterDeviceSecurityPlatform _instance = MethodChannelFlutterDeviceSecurity();
+  static FlutterDeviceSecurityPlatform _instance =
+      MethodChannelFlutterDeviceSecurity();
 
   /// The default instance of [FlutterDeviceSecurityPlatform] to use.
   ///

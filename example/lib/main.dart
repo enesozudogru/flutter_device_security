@@ -17,13 +17,15 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  final ValueNotifier<DeviceSecurity?> deviceSecurityNotifier = ValueNotifier<DeviceSecurity?>(null);
+  final ValueNotifier<DeviceSecurity?> deviceSecurityNotifier =
+      ValueNotifier<DeviceSecurity?>(null);
   final ValueNotifier<bool> loadingNotifier = ValueNotifier<bool>(false);
   final flutterDeviceSecurity = FlutterDeviceSecurity();
   Future<void> checkDeviceSecurity() async {
     try {
       loadingNotifier.value = true;
-      deviceSecurityNotifier.value = await flutterDeviceSecurity.checkDeviceSecurity();
+      deviceSecurityNotifier.value =
+          await flutterDeviceSecurity.checkDeviceSecurity();
     } catch (e) {
       debugPrint('Device security check error: $e');
     } finally {
@@ -52,11 +54,23 @@ class _MyAppState extends State<MyApp> {
                     return ListView(
                       shrinkWrap: true,
                       children: [
-                        DeviceSecurityTile(type: DeviceSecurityTypes.passcode, value: deviceSecurity.passcode),
-                        DeviceSecurityTile(type: DeviceSecurityTypes.version, value: deviceSecurity.version),
+                        DeviceSecurityTile(
+                          type: DeviceSecurityTypes.passcode,
+                          value: deviceSecurity.passcode,
+                        ),
+                        DeviceSecurityTile(
+                          type: DeviceSecurityTypes.version,
+                          value: deviceSecurity.version,
+                        ),
                         if (deviceSecurity is AndroidDeviceSecurity) ...[
-                          DeviceSecurityTile(type: DeviceSecurityTypes.biometric, value: deviceSecurity.biometric),
-                          DeviceSecurityTile(type: DeviceSecurityTypes.usbDebugging, value: !(deviceSecurity.usbDebugging ?? false)),
+                          DeviceSecurityTile(
+                            type: DeviceSecurityTypes.biometric,
+                            value: deviceSecurity.biometric,
+                          ),
+                          DeviceSecurityTile(
+                            type: DeviceSecurityTypes.usbDebugging,
+                            value: !(deviceSecurity.usbDebugging ?? false),
+                          ),
                         ],
                       ],
                     );
@@ -69,7 +83,11 @@ class _MyAppState extends State<MyApp> {
                 padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: ElevatedButton(
                   onPressed: checkDeviceSecurity,
-                  style: ElevatedButton.styleFrom(padding: const EdgeInsets.symmetric(vertical: 16), backgroundColor: Colors.blueAccent, foregroundColor: Colors.white),
+                  style: ElevatedButton.styleFrom(
+                    padding: const EdgeInsets.symmetric(vertical: 16),
+                    backgroundColor: Colors.blueAccent,
+                    foregroundColor: Colors.white,
+                  ),
                   child: const Text('Start Scan'),
                 ),
               ),
@@ -92,6 +110,15 @@ class DeviceSecurityTile extends StatelessWidget {
     if (!type.show) {
       return const SizedBox.shrink();
     }
-    return ListTile(leading: Icon(type.icon, color: value == true ? Colors.green : Colors.red), title: Text(type.label, style: TextStyle(color: value == true ? Colors.green : Colors.red)));
+    return ListTile(
+      leading: Icon(
+        type.icon,
+        color: value == true ? Colors.green : Colors.red,
+      ),
+      title: Text(
+        type.label,
+        style: TextStyle(color: value == true ? Colors.green : Colors.red),
+      ),
+    );
   }
 }
