@@ -1,7 +1,7 @@
 name: flutter_device_security
-description: "A new Flutter plugin project."
-version: 0.0.1
-homepage:
+description: "A Flutter plugin for checking device security features like device lock, biometric authentication, USB debugging, and OS version validation."
+version: 0.0.1+1
+homepage: https://github.com/enesozudogru/flutter_device_security
 
 environment:
   sdk: ^3.7.0
