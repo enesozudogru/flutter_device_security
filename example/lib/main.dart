@@ -9,14 +9,27 @@ void main() {
   runApp(const MyApp());
 }
 
-class MyApp extends StatefulWidget {
+class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
   @override
-  State<MyApp> createState() => _MyAppState();
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Device Security Example',
+      theme: ThemeData(primarySwatch: Colors.blue),
+      home: const DeviceSecurityScreen(),
+    );
+  }
 }
 
-class _MyAppState extends State<MyApp> {
+class DeviceSecurityScreen extends StatefulWidget {
+  const DeviceSecurityScreen({super.key});
+
+  @override
+  State<DeviceSecurityScreen> createState() => _DeviceSecurityScreenState();
+}
+
+class _DeviceSecurityScreenState extends State<DeviceSecurityScreen> {
   final ValueNotifier<DeviceSecurity?> deviceSecurityNotifier =
       ValueNotifier<DeviceSecurity?>(null);
   final ValueNotifier<bool> loadingNotifier = ValueNotifier<bool>(false);
