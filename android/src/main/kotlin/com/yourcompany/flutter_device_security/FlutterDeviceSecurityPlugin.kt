@@ -1,4 +1,4 @@
-package com.yourcompany.flutter_device_security
+package com.enesozudogru.flutter_device_security
 
 import io.flutter.embedding.engine.plugins.FlutterPlugin
 import io.flutter.plugin.common.MethodCall

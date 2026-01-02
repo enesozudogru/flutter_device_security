@@ -1,4 +1,4 @@
-package com.yourcompany.flutter_device_security_example
+package com.enesozudogru.flutter_device_security_example
 
 import io.flutter.embedding.android.FlutterActivity
 

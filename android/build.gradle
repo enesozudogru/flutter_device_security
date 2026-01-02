@@ -1,4 +1,4 @@
-group = "com.yourcompany.flutter_device_security"
+group = "com.enesozudogru.flutter_device_security"
 version = "1.0-SNAPSHOT"
 
 buildscript {
@@ -25,7 +25,7 @@ apply plugin: "com.android.library"
 apply plugin: "kotlin-android"
 
 android {
-    namespace = "com.yourcompany.flutter_device_security"
+    namespace = "com.enesozudogru.flutter_device_security"
 
     compileSdk = 35
 
