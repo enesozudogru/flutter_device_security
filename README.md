@@ -3,6 +3,9 @@
 [![pub package](https://img.shields.io/pub/v/flutter_device_security.svg)](https://pub.dev/packages/flutter_device_security)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
+<img src="https://github.com/user-attachments/assets/96652e55-9daf-4a2e-8617-98158cfa013d" width="200">
+
+
 A comprehensive Flutter plugin for checking device security features across Android and iOS platforms. This plugin helps you verify various security aspects of the user's device to ensure a secure environment for your application.
 
 ## Features
